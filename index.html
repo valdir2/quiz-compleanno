@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quiz di Compleanno</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <div id="quiz-container">
+            <h1>🎉 Quiz di Compleanno! 🎂</h1>
+            <div id="quiz" class="active">
+                <h2 id="question"></h2>
+                <div class="options" id="options">
+                </div>
+                <button id="next-btn" class="btn">Prossima Domanda</button>
+            </div>
+            <div id="result" class="hidden">
+                <h2>🎊 È ora del grande momento! 🎊</h2>
+                <p id="score-text"></p>
+                <div id="drumroll-text" class="hidden">
+                    🥁 Rullo di tamburi... 🥁
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Carosello a tutto schermo -->
+    <div id="fullscreen-carousel" class="fullscreen-carousel">
+        <div class="pyro">
+            <div class="before"></div>
+            <div class="after"></div>
+        </div>
+        <img id="reward-image" src="image.png" alt="Premio">
+        <!-- Contenitore per i palloncini -->
+        <div id="balloons-container"></div>
+    </div>
+
+    <!-- Audio per il rullo di tamburi -->
+    <audio id="drumroll" src="data:audio/mpeg;base64,SUQzBAAAAAAAI1RTU0UAAAAPAAADTGF2ZjU4LjI5LjEwMAAAAAAAAAAAAAAA//OEAAAAAAAAAAAAAAAAAAAAAAAASW5mbwAAAA8AAAASAAAeMwAUFBQUFCIiIiIiIjAwMDAwPz8/Pz8/TU1NTU1NW1tbW1tbaWlpaWl3d3d3d3eFhYWFhYWTk5OTk5OgoKCgoK6urq6urru7u7u7u8jIyMjIyNbW1tbW1uPj4+Pj8fHx8fHx////////AAAAAExhdmM1OC41NAAAAAAAAAAAAAAAACQCgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAD/84EAAAAAAAAAAAAAAAAAAAAAAEluZm8AAAAPAAAAEgAAHjMAFBQUFBQiIiIiIiIwMDAwMD8/Pz8/P01NTU1NTVtbW1tbW2lpaaWlpYWFhYWFhZOTk5OTk6CgoKCgrq6urq6uu7u7u7u7yMjIyMjI1tbW1tbW4+Pj4+Px8fHx8fH/AAAAAE1wM1JvAAAAAAAAAAAAAAAAJAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAD/84EAAAAAAAAAAAAAAAAAAAAAAEluZm8AAAAPAAAAEgAAHjMAFBQUFBQiIiIiIiIwMDAwMD8/Pz8/P01NTU1NTVtbW1tbW2lpaaWlpYWFhYWFhZOTk5OTk6CgoKCgrq6urq6uu7u7u7u7yMjIyMjI1tbW1tbW4+Pj4+Px8fHx8fH/AAAAAE1wM1JvAAAAAAAAAAAAAAAAJAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAD/84EAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA//PEBAAAAFgBLqAAAAA8wAjXAAAAAAAAIAAAAAAALYNhGL2L2AAAAAAAAAA//MEBAAAAAQAA//PEBAAAAAEAAP/zxAQAAAABAAA"></audio>
+
+    <script src="script.js"></script>
+</body>
+</html>
