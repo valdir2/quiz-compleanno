@@ -12,10 +12,10 @@ const questions = [
     {
         question: "L'ingrediente magico da mettere nei carciofi?",
         options: [
-            "il verderame!",
+            "il verderame",
             "La paprica",
             "Le fragole",
-            "La mentuccia"
+            "La mentuccia del tuo terrazzo"
         ],
         correct: 3
     },
