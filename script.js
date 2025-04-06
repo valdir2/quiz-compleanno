@@ -61,7 +61,7 @@ function isMobile() {
     return /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
 }
 
-// Funzione per richiedere la rotazione orizzontale
+// Funzione per forzare la rotazione orizzontale
 async function requestLandscapeMode() {
     if (screen.orientation && screen.orientation.lock) {
         try {
@@ -251,13 +251,14 @@ function checkOrientation() {
     if (!isMobile()) return;
     
     const isPortrait = window.matchMedia("(orientation: portrait)").matches;
-    const isSmallScreen = window.innerWidth <= 900;
-    
-    if (isPortrait && isSmallScreen) {
+    if (isPortrait) {
         rotateMessage.classList.remove('hidden');
     } else {
         rotateMessage.classList.add('hidden');
     }
+    
+    // Forza la rotazione orizzontale
+    requestLandscapeMode();
 }
 
 // Gestisci il cambio di orientamento
