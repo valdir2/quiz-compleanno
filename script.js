@@ -20,12 +20,12 @@ const questions = [
         correct: 0
     },
     {
-        question: "Qual è il miglior regalo di compleanno?",
+        question: "Quale è l'ingrediente segreto per la carbonara ?",
         options: [
-            "Un calzino spaiato",
-            "Un abbraccio sincero",
-            "Una busta vuota",
-            "Un pacco pieno di scatole vuote"
+            "l'abbacchio",
+            "le uova",
+            "il tofu",
+            "il mandarino"
         ],
         correct: 1
     },
