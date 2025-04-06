@@ -120,15 +120,26 @@ async function showFinalReveal() {
     // Aspetta 3 secondi per il rullo di tamburi
     await new Promise(resolve => setTimeout(resolve, 3000));
 
-    // Mostra il carosello a tutto schermo
+    // Mostra il carosello con il pacco regalo
     carousel.style.display = 'flex';
     setTimeout(() => {
         carousel.classList.add('visible');
         // Aggiungi palloncini
         addBalloons();
+    }, 100);
+
+    // Aggiungi evento click al pacco regalo
+    const giftBox = document.getElementById('gift-box');
+    const rewardImage = document.getElementById('reward-image');
+    const clickMessage = document.querySelector('.click-message');
+
+    giftBox.addEventListener('click', () => {
+        giftBox.style.display = 'none';
+        clickMessage.style.display = 'none';
+        rewardImage.classList.remove('hidden');
         // Attiva i fuochi d'artificio
         document.querySelector('.pyro').style.display = 'block';
-    }, 100);
+    });
 }
 
 function showResult() {
