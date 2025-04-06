@@ -10,14 +10,14 @@ const questions = [
         correct: 2
     },
     {
-        question: "Quante candeline si dovrebbero mettere sulla torta?",
+        question: "L'ingrediente magico da mettere nei carciofi?",
         options: [
-            "Una per ogni anno, ovviamente!",
-            "Solo una simbolica",
-            "Tante da far scattare l'allarme antincendio",
-            "Nessuna, sono un risparmio energetico"
+            "il verderame!",
+            "La paprica",
+            "Le fragole",
+            "La mentuccia"
         ],
-        correct: 0
+        correct: 3
     },
     {
         question: "Quale è l'ingrediente segreto per la carbonara ?",
