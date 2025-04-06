@@ -105,6 +105,11 @@ function selectOption(index) {
         const correctSound = document.getElementById('correct-sound');
         correctSound.currentTime = 0;
         correctSound.play();
+    } else {
+        // Riproduci il suono di risposta sbagliata
+        const wrongSound = document.getElementById('wrong-sound');
+        wrongSound.currentTime = 0;
+        wrongSound.play();
     }
     
     options[correct].classList.add('correct');
@@ -127,18 +132,37 @@ async function showFinalReveal() {
         // Aggiungi palloncini
         addBalloons();
     }, 100);
+// Aggiungi evento click al pacco regalo
+const giftBox = document.getElementById('gift-box');
+const puzzleContainer = document.getElementById('puzzle-container');
+const clickMessage = document.querySelector('.click-message');
+const puzzlePieces = document.querySelectorAll('.puzzle-piece');
 
-    // Aggiungi evento click al pacco regalo
-    const giftBox = document.getElementById('gift-box');
-    const rewardImage = document.getElementById('reward-image');
-    const clickMessage = document.querySelector('.click-message');
-
-    giftBox.addEventListener('click', () => {
-        giftBox.style.display = 'none';
-        clickMessage.style.display = 'none';
-        rewardImage.classList.remove('hidden');
-        // Attiva i fuochi d'artificio
-        document.querySelector('.pyro').style.display = 'block';
+giftBox.addEventListener('click', () => {
+    giftBox.style.display = 'none';
+    clickMessage.style.display = 'none';
+    puzzleContainer.classList.remove('hidden');
+    
+    // Crea un array di indici e mescolalo per rivelare i pezzi in ordine casuale
+    const indices = Array.from({length: puzzlePieces.length}, (_, i) => i);
+    for (let i = indices.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [indices[i], indices[j]] = [indices[j], indices[i]];
+    }
+    
+        
+        // Rivela i pezzi del puzzle in ordine casuale
+        indices.forEach((index, i) => {
+            setTimeout(() => {
+                puzzlePieces[index].classList.add('revealed');
+                // Quando l'ultimo pezzo è rivelato, mostra i fuochi d'artificio
+                if (i === puzzlePieces.length - 1) {
+                    setTimeout(() => {
+                        document.querySelector('.pyro').style.display = 'block';
+                    }, 500);
+                }
+            }, i * 800); // Aumentato il ritardo a 800ms tra ogni pezzo
+        });
     });
 }
 
