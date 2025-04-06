@@ -55,6 +55,22 @@ const drumrollAudio = document.getElementById('drumroll');
 const drumrollText = document.getElementById('drumroll-text');
 const scoreText = document.getElementById('score-text');
 
+// Funzione per rilevare se siamo su mobile
+function isMobile() {
+    return /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
+}
+
+// Funzione per richiedere la rotazione orizzontale
+async function requestLandscapeMode() {
+    if (screen.orientation && screen.orientation.lock) {
+        try {
+            await screen.orientation.lock('landscape');
+        } catch (e) {
+            console.log('Rotazione schermo non supportata');
+        }
+    }
+}
+
 function createBalloon() {
     const balloon = document.createElement('div');
     balloon.className = 'balloon';
@@ -132,13 +148,15 @@ async function showFinalReveal() {
         // Aggiungi palloncini
         addBalloons();
     }, 100);
+}
+
 // Aggiungi evento click al pacco regalo
 const giftBox = document.getElementById('gift-box');
 const puzzleContainer = document.getElementById('puzzle-container');
 const clickMessage = document.querySelector('.click-message');
 const puzzlePieces = document.querySelectorAll('.puzzle-piece');
 
-giftBox.addEventListener('click', () => {
+giftBox.addEventListener('click', async () => {
     giftBox.style.display = 'none';
     clickMessage.style.display = 'none';
     puzzleContainer.classList.remove('hidden');
@@ -150,21 +168,19 @@ giftBox.addEventListener('click', () => {
         [indices[i], indices[j]] = [indices[j], indices[i]];
     }
     
-        
-        // Rivela i pezzi del puzzle in ordine casuale
-        indices.forEach((index, i) => {
-            setTimeout(() => {
-                puzzlePieces[index].classList.add('revealed');
-                // Quando l'ultimo pezzo è rivelato, mostra i fuochi d'artificio
-                if (i === puzzlePieces.length - 1) {
-                    setTimeout(() => {
-                        document.querySelector('.pyro').style.display = 'block';
-                    }, 500);
-                }
-            }, i * 800); // Aumentato il ritardo a 800ms tra ogni pezzo
-        });
+    // Rivela i pezzi del puzzle in ordine casuale
+    indices.forEach((index, i) => {
+        setTimeout(() => {
+            puzzlePieces[index].classList.add('revealed');
+            // Quando l'ultimo pezzo è rivelato, mostra i fuochi d'artificio
+            if (i === puzzlePieces.length - 1) {
+                setTimeout(() => {
+                    document.querySelector('.pyro').style.display = 'block';
+                }, 500);
+            }
+        }, i * 800);
     });
-}
+});
 
 function showResult() {
     quizContainer.classList.remove('active');
@@ -202,11 +218,26 @@ nextButton.addEventListener('click', () => {
 });
 
 // Inizializza il quiz
-document.addEventListener('DOMContentLoaded', () => {
+document.addEventListener('DOMContentLoaded', async () => {
     carousel.style.display = 'none';
     document.querySelector('.pyro').style.display = 'none';
+
+    // Se siamo su mobile, richiedi orientamento orizzontale
+    if (isMobile()) {
+        await requestLandscapeMode();
+        document.body.classList.add('landscape-mode');
+    }
+    
     // Riproduci il suono di benvenuto
     const welcomeSound = document.getElementById('welcome-sound');
     welcomeSound.play();
+    
     showQuestion();
+});
+
+// Gestisci il cambio di orientamento
+window.addEventListener('orientationchange', async () => {
+    if (isMobile()) {
+        await requestLandscapeMode();
+    }
 });

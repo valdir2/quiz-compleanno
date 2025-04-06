@@ -8,6 +8,82 @@ body {
     font-family: Arial, sans-serif;
 }
 
+@media screen and (orientation: landscape) and (max-width: 900px) {
+    body {
+        background: radial-gradient(circle, #000046 0%, #1CB5E0 100%);
+    }
+    
+    .container {
+        width: 100vw;
+        height: 100vh;
+        display: flex;
+        flex-direction: column;
+        padding: 1rem;
+        background: transparent;
+        box-shadow: none;
+        color: white;
+    }
+
+    h1 {
+        color: #ffd700;
+        text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+        margin-bottom: 2rem;
+    }
+
+    h2 {
+        color: #fff;
+        text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+        margin-bottom: 1.5rem;
+    }
+
+    .options {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 1rem;
+        padding: 0.5rem;
+    }
+
+    .option {
+        background: linear-gradient(45deg, #00008B, #0000CD);
+        border: 2px solid #4169E1;
+        color: white;
+        text-shadow: 1px 1px 2px rgba(0,0,0,0.5);
+        padding: 1rem;
+        border-radius: 10px;
+        font-size: 18px;
+        position: relative;
+        overflow: hidden;
+    }
+
+    .option::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(45deg, rgba(255,255,255,0.1), transparent);
+        pointer-events: none;
+    }
+
+    .option.correct {
+        background: linear-gradient(45deg, #006400, #008000);
+        border-color: #32CD32;
+    }
+
+    .option.wrong {
+        background: linear-gradient(45deg, #8B0000, #B22222);
+        border-color: #FF0000;
+    }
+
+    .btn {
+        background: linear-gradient(45deg, #FFD700, #FFA500);
+        color: #000;
+        text-shadow: 1px 1px 2px rgba(255,255,255,0.5);
+        font-weight: bold;
+    }
+}
+
 .container {
     background-color: white;
     padding: 2rem;
@@ -64,18 +140,6 @@ h2 {
     display: grid;
     gap: 0.5rem;
     margin: 0.5rem 0;
-    max-height: calc(100vh - 250px);
-    overflow-y: auto;
-}
-
-@media screen and (max-height: 700px) {
-    .container {
-        padding: 1rem;
-    }
-    
-    .options {
-        gap: 0.3rem;
-    }
 }
 
 .option {
@@ -84,7 +148,7 @@ h2 {
     border-radius: 6px;
     font-size: 20px;
     cursor: pointer;
-    transition: background-color 0.3s;
+    transition: all 0.3s ease;
 }
 
 .option:hover {
@@ -155,23 +219,22 @@ h2 {
     align-items: center;
 }
 
-@media screen and (orientation: portrait) {
-    #puzzle-container {
-        width: 95%;
-        max-height: 50vh;
-    }
-    
-    .puzzle-image {
-        max-height: 45vh;
-        width: auto;
-    }
-}
-
 .puzzle-image {
     max-width: 100%;
     height: auto;
     object-fit: contain;
     display: block;
+}
+
+@media screen and (orientation: landscape) {
+    #puzzle-container {
+        width: 100vw;
+        height: 100vh;
+    }
+
+    .puzzle-image {
+        max-height: 90vh;
+    }
 }
 
 .puzzle-overlay {
