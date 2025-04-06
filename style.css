@@ -8,6 +8,15 @@ body {
     font-family: Arial, sans-serif;
 }
 
+.container {
+    background-color: white;
+    padding: 2rem;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    max-width: 800px;
+    width: 100%;
+}
+
 .gift-box {
     width: 200px;
     height: 200px;
@@ -21,53 +30,59 @@ body {
 
 .click-message {
     color: white;
-    font-size: 32px;
-    margin-top: 20px;
+    font-size: 24px;
+    margin-top: 10px;
     text-align: center;
     font-family: Arial, sans-serif;
 }
 
-.container {
-    background-color: white;
-    padding: 2rem;
-    border-radius: 10px;
-    box-shadow: 0 0 10px rgba(0,0,0,0.1);
-    max-width: 800px;
-    width: 100%;
-}
-
 h1 {
-    font-size: 48px;
+    font-size: 28px;
     text-align: center;
+    margin: 10px 0;
 }
 
 h2 {
-    font-size: 36px;
+    font-size: 24px;
     text-align: center;
     line-height: 1.4;
 }
 
 #score-text {
-    font-size: 32px;
+    font-size: 22px;
     text-align: center;
+    margin: 10px 0;
 }
 
 #drumroll-text {
-    font-size: 32px;
+    font-size: 22px;
     text-align: center;
+    margin: 10px 0;
 }
 
 .options {
     display: grid;
-    gap: 1rem;
-    margin: 1rem 0;
+    gap: 0.5rem;
+    margin: 0.5rem 0;
+    max-height: calc(100vh - 250px);
+    overflow-y: auto;
+}
+
+@media screen and (max-height: 700px) {
+    .container {
+        padding: 1rem;
+    }
+    
+    .options {
+        gap: 0.3rem;
+    }
 }
 
 .option {
-    padding: 1.5rem;
-    border: 3px solid #2989d8;
-    border-radius: 8px;
-    font-size: 28px;
+    padding: 0.8rem;
+    border: 2px solid #2989d8;
+    border-radius: 6px;
+    font-size: 20px;
     cursor: pointer;
     transition: background-color 0.3s;
 }
@@ -89,10 +104,10 @@ h2 {
 .btn {
     background-color: #2989d8;
     color: white;
-    padding: 1.5rem 3rem;
-    font-size: 28px;
+    padding: 0.8rem 2rem;
+    font-size: 20px;
     border: none;
-    border-radius: 5px;
+    border-radius: 4px;
     cursor: pointer;
     display: none;
 }
@@ -132,17 +147,30 @@ h2 {
 
 #puzzle-container {
     position: relative;
-    width: 80%;
-    max-width: 800px;
+    width: 90%;
+    max-width: 90vw;
     margin: 0 auto;
     display: flex;
     justify-content: center;
     align-items: center;
 }
 
+@media screen and (orientation: portrait) {
+    #puzzle-container {
+        width: 95%;
+        max-height: 50vh;
+    }
+    
+    .puzzle-image {
+        max-height: 45vh;
+        width: auto;
+    }
+}
+
 .puzzle-image {
     max-width: 100%;
-    max-height: 80vh;
+    height: auto;
+    object-fit: contain;
     display: block;
 }
 
