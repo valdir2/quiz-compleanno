@@ -47,6 +47,7 @@ let score = 0;
 const questionElement = document.getElementById('question');
 const optionsContainer = document.getElementById('options');
 const nextButton = document.getElementById('next-btn');
+const rotateMessage = document.getElementById('rotate-message');
 const quizContainer = document.getElementById('quiz');
 const resultContainer = document.getElementById('result');
 const carousel = document.getElementById('fullscreen-carousel');
@@ -147,6 +148,10 @@ async function showFinalReveal() {
         carousel.classList.add('visible');
         // Aggiungi palloncini
         addBalloons();
+        // Richiedi nuovamente la rotazione orizzontale se su mobile
+        if (isMobile()) {
+            requestLandscapeMode();
+        }
     }, 100);
 }
 
@@ -178,17 +183,23 @@ giftBox.addEventListener('click', async () => {
                     document.querySelector('.pyro').style.display = 'block';
                 }, 500);
             }
-        }, i * 800);
+        }, i * 1200); // Aumentato da 800ms a 1200ms
     });
 });
 
-function showResult() {
+async function showResult() {
     quizContainer.classList.remove('active');
     quizContainer.classList.add('hidden');
     resultContainer.classList.remove('hidden');
     resultContainer.classList.add('active');
     
     scoreText.textContent = `Hai risposto correttamente a ${score} domande su ${questions.length}!`;
+    
+    // Se siamo su mobile, forza la rotazione orizzontale
+    if (isMobile()) {
+        await requestLandscapeMode();
+        document.body.classList.add('landscape-mode');
+    }
     
     // Avvia la sequenza finale con rullo di tamburi
     showFinalReveal();
@@ -235,9 +246,20 @@ document.addEventListener('DOMContentLoaded', async () => {
     showQuestion();
 });
 
-// Gestisci il cambio di orientamento
-window.addEventListener('orientationchange', async () => {
-    if (isMobile()) {
-        await requestLandscapeMode();
+// Funzione per controllare l'orientamento
+function checkOrientation() {
+    if (!isMobile()) return;
+    
+    const isPortrait = window.matchMedia("(orientation: portrait)").matches;
+    const isSmallScreen = window.innerWidth <= 900;
+    
+    if (isPortrait && isSmallScreen) {
+        rotateMessage.classList.remove('hidden');
+    } else {
+        rotateMessage.classList.add('hidden');
     }
-});
+}
+
+// Gestisci il cambio di orientamento
+window.addEventListener('orientationchange', checkOrientation);
+window.addEventListener('resize', checkOrientation);
