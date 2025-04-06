@@ -99,7 +99,13 @@ function selectOption(index) {
     const correct = questions[currentQuestion].correct;
     
     options[index].classList.add(index === correct ? 'correct' : 'wrong');
-    if (correct === index) score++;
+    if (correct === index) {
+        score++;
+        // Riproduci il suono di risposta corretta
+        const correctSound = document.getElementById('correct-sound');
+        correctSound.currentTime = 0;
+        correctSound.play();
+    }
     
     options[correct].classList.add('correct');
     nextButton.style.display = 'block';
@@ -164,5 +170,8 @@ nextButton.addEventListener('click', () => {
 document.addEventListener('DOMContentLoaded', () => {
     carousel.style.display = 'none';
     document.querySelector('.pyro').style.display = 'none';
+    // Riproduci il suono di benvenuto
+    const welcomeSound = document.getElementById('welcome-sound');
+    welcomeSound.play();
     showQuestion();
 });
